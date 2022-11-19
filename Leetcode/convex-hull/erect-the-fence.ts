@@ -16,6 +16,7 @@ function outerTrees(points: number[][]): number[][] {
         });
         return [...hull];
     }
+    points.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
     let left_most = 0;
     for (let i = 0; i < points.length; i++)
         if (points[i][0] < points[left_most][0])
