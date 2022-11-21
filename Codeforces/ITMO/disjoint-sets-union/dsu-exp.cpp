@@ -2,6 +2,7 @@
     @lesson: https://codeforces.com/edu/course/2/lesson/7/1
     @problem: https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/C
     @time-complexity: O(log(n))  (!!not in amortization!!)
+    @comment: https://codeforces.com/edu/course/2/lesson/7/1/practice#comment-696262
 */
 
 #include <iostream>
