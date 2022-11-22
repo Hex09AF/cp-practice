@@ -1,5 +1,5 @@
-function orient(p: number[], q: number[], r: number[]): number {
-    return (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
+function orient(a: number[], b: number[], c: number[]): number {
+    return (b[1] - a[1]) * (c[0] - b[0]) - (b[0] - a[0]) * (c[1] - b[1]);
 }
 
 function inBetween(p: number[], i: number[], q: number[]): boolean {
