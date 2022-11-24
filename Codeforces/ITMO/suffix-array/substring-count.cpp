@@ -1,6 +1,6 @@
 /*
-    @lesson: https://codeforces.com/edu/course/2/lesson/2/1
-    @problem: https://codeforces.com/edu/course/2/lesson/2/1/practice/contest/269100/problem/A
+    @lesson: https://codeforces.com/edu/course/2/lesson/2/3
+    @problem: https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B
     @time-complexity: O(nlog^2(n)) 
 */
 
@@ -105,8 +105,32 @@ void Excalibur(){
         ++k;
     }
 
-    for (int i = 0; i < n; ++i) {
-        cout << P[i].second << " ";
+    int q; cin >> q;
+    for (int i=0; i<q; ++i) {
+        string st; cin >> st;
+        int l=0, r=n-1;
+        while (l <= r) {
+            int m = r - ((r-l)>>1);
+            string substr = s.substr(P[m].second, st.size());
+            int comp = st > substr ? 1 : - 1;
+            if (comp == 1) {
+                l = m+1;
+            } else {
+                r = m-1;
+            }
+        }
+        int ll=0, rr=n-1;
+        while (ll <= rr) {
+            int m = rr - ((rr-ll)>>1);
+            string substr = s.substr(P[m].second, st.size());
+            int comp = st >= substr ? 1 : - 1;
+            if (comp == 1) {
+                ll = m+1;
+            } else {
+                rr = m-1;
+            }
+        }
+        cout << ll-l << "\n";
     }
 }
  

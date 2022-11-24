@@ -1,5 +1,5 @@
 /*
-    @problem: https://codeforces.com/edu/course/2/lesson/6/1/practice/contest/283911/problem/A
+    @problem: https://codeforces.com/edu/course/2/lesson/6/1/practice/contest/283911/problem/B
 */
 
 #include <iostream>
@@ -33,17 +33,13 @@ void Excalibur(){
         int l = 0, r = n - 1;
         while (l <= r) {
             int m = (l + r) >> 1;
-            if (x > A[m]) {
+            if (x >= A[m]) {
                 l = m + 1;
-            } else if (x < A[m]){
-                r = m - 1;
             } else {
-                l = m;
-                break;
+                r = m - 1;
             }
         }
-        if (l <= r) cout << "YES\n";
-        else cout << "NO\n";
+        cout << l << "\n";
     }
 }
 
