@@ -57,4 +57,4 @@ void Excalibur(){
 }
 
 int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-Excalibur();return 0;}
+int tc = 1; while (tc--) Excalibur(); return 0;}

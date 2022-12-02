@@ -46,5 +46,5 @@ void Excalibur(){
     cout << r;
 }
 
-int main(){ios::sync_with_stdio(false);
-int t = 1; while (t--) Excalibur(); return 0;}
+int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+int tc = 1; while (tc--) Excalibur(); return 0;}
