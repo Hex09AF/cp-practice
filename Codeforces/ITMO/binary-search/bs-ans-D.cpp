@@ -65,5 +65,5 @@ void Excalibur(){
     }
 }
 
-int main(){ios::sync_with_stdio(false);
+int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 int tc = 1; while (tc--) Excalibur(); return 0;}
