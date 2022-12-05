@@ -1,6 +1,6 @@
 /*
-    @lesson: https://codeforces.com/edu/course/2/lesson/7/2
-    @problem: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H
+    @lesson: https://codeforces.com/edu/course/2/lesson/9/2
+    @problem: https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B
     @time-complexity: O(log(n))  (!!not in amortization!!)
 */
 
