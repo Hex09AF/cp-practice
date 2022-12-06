@@ -1,6 +1,6 @@
 /*
     @lesson: https://codeforces.com/edu/course/2/lesson/9/2
-    @problem: https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B
+    @problem: https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/D
     @time-complexity: O(log(n))  (!!not in amortization!!)
 */
 
@@ -42,6 +42,7 @@ void Excalibur(){
     int r=0;
     ll su=0;
     int rs = INT_MAX;
+    ll misseveryone = 0;
     for(int i=0; i<n; ++i){
         while (r < n && su < s){
             su += A[r];
@@ -49,10 +50,11 @@ void Excalibur(){
         }
         if (su >= s) {
             rs = min(rs, r-i);
+            misseveryone += n-r+1;
         }
         su -= A[i];
     }
-    cout << (rs == INT_MAX ? -1 : rs);
+    cout << (rs == INT_MAX ? 0 : misseveryone);
 }
 
 int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);

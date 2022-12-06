@@ -1,6 +1,6 @@
 /*
     @lesson: https://codeforces.com/edu/course/2/lesson/9/2
-    @problem: https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/B
+    @problem: https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/C
     @time-complexity: O(log(n))  (!!not in amortization!!)
 */
 
@@ -41,18 +41,23 @@ void Excalibur(){
     for (auto &a: A) cin>>a;
     int r=0;
     ll su=0;
-    int rs = INT_MAX;
+    int rs = INT_MIN;
+    ll huhu=0;
     for(int i=0; i<n; ++i){
         while (r < n && su < s){
             su += A[r];
             ++r;
         }
-        if (su >= s) {
-            rs = min(rs, r-i);
+        if (su <= s) {
+            rs = max(rs, r-i);
+            huhu += r-i;
+        } else {
+            rs = max(rs, r-i-1);
+            huhu += r-i-1;
         }
         su -= A[i];
     }
-    cout << (rs == INT_MAX ? -1 : rs);
+    cout << huhu;
 }
 
 int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
