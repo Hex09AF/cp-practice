@@ -69,7 +69,7 @@ void radix_sort(vector<pair<pair<int,int>, int> > &A) {
 void Excalibur(){
     string ss; cin >> ss;
     string t; cin >> t;
-    string s = ss + "#" + t;
+    string s = ss + "#" + t + "$";
     int n = s.size();
     vector<pair<char,int> > Init(n);
     for (int i=0; i<n; ++i) {
@@ -115,17 +115,29 @@ void Excalibur(){
         lcp[pi] = k;
         k = max(k-1, 0);
     }
- 
+
+    // for (int i=0; i<n; ++i) {
+    //     DB(s.substr(P[i].second));
+    // }
+
+    // for (int i=1; i<n; ++i) {
+    //     DB(lcp[i]);
+    // }
+    
     int pos = 1;
     for (int i=1; i<n; ++i) {
-        DB(s.substr(P[i].second));
-        DB(lcp[i]);
-        if (lcp[pos] < lcp[i] && P[i].second > ss.size() && P[i-1].second < ss.size()) {
+        if (lcp[pos] < lcp[i] 
+            && (
+                P[i].second > ss.size() && P[i-1].second < ss.size() 
+                || P[i].second < ss.size() && P[i-1].second > ss.size()
+            )
+        ) {
             pos = i;
         }
     }
     cout << s.substr(P[pos].second, lcp[pos]);
+
 }
  
 int main(){ios::sync_with_stdio(false); 
-Excalibur(); return 0;}
+int t; t = 1; while (t--) Excalibur(); return 0;}
