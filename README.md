@@ -153,6 +153,7 @@ Project Link: [https://github.com/Hex09AF/cp-practice](https://github.com/Hex09A
 * [Leetcode](https://leetcode.com/)
 * [Atcoder](https://atcoder.jp/)
 * [Topcoder](https://www.topcoder.com/)
+* [Usaco guide](https://usaco.guide/dashboard/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
