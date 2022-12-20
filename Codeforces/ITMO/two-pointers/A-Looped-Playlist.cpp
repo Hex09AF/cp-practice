@@ -28,40 +28,25 @@ void Excalibur(){
     int n; ll p;
     cin >> n >> p;
     vector<int> a(n);
-    for (auto &x: a) cin >> x;
+    ll tot = 0;
+    for (auto &x: a) { 
+        cin >> x; 
+        tot += x;
+    }
     for (int i=0; i<n-1; ++i) a.push_back(a[i]);
-    ll s = 0, l = 0, rs = LLONG_MAX, posRs = 0;
+    ll s = 0, l = 0;
+    ll rs = LLONG_MAX, posRs = 0;
+    ll k = p/tot*n;
+    p %= tot;
     for (int i=0; i<2*n-1; ++i) {
         s += a[i];
-        while (s - a[l] >= p) {
-            s -= a[l]; ++l;
-        }
-        if (s >= p) {
-            if (rs > (i-l+1)) {
-                rs = i-l+1;
-                posRs = l;
-            }
-        } else {
-            if (i-l+1 == n) {
-                ll tmpRs = (p/s)*n;
-                ll need = p%s;
-                for (int j=l; need && j<l+n; ++j) {
-                    need -= a[j];
-                    ++tmpRs;
-                    if (need <= 0) {
-                        break;
-                    }
-                }
-                if (rs > tmpRs) {
-                    rs = tmpRs;
-                    posRs = l;
-                }
-                s -= a[l];
-                ++l;
-            }
+        while (l <= i && s - a[l] >= p) {s -= a[l]; ++l;}
+        if (s >= p && i-l+1 < rs) {
+            rs = i-l+1;
+            posRs = l;
         }
     }
-    cout << posRs + 1 << " " << rs << "\n";
+    cout << posRs % n + 1 << " " << k + rs << "\n";
 }
 
 int main(){ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
