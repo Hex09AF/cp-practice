@@ -1,5 +1,5 @@
 /*
-    @lesson: https://codeforces.com/edu/course/2/lesson/6/3
+    @lesson: https://codeforces.com/edu/course/2/lesson/7/2
     @problem: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/I
 */
 
@@ -53,10 +53,12 @@ void Excalibur(){
         int u, v;
         int q; cin >> q;
         cin >> u >> v;
+        u = (u+shift)%n;
+        v = (v+shift)%n;
         if (!q) {
-            uni(u + shift, v + shift);
+            uni(u, v);
         } else {
-            if (get(max((u+shift)%n, 1)).second == get(max((v+shift)%n, 1)).second) {
+            if (get(u).second == get(v).second) {
                 cout << "YES\n";
                 shift += 1;
                 shift %= n;
