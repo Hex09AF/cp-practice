@@ -52,62 +52,51 @@ template<class T, class... U> void W(const T &head, const U &... tail) { _W(head
  #define DEBUG(...)
 #endif
 int MOD = 1e9+7;
+LL neutral = 0;
 
 int n, m;
-VL a, b, segA, segB;
-
-LL neutral = 0;
+VL a, seg;
 
 LL merge(LL a, LL b) {
     return a + b;
 }
 
-void build(int l, int r, int idx, VL& seg, VL& ar) {
-    if (r-l==1) { seg[idx] = ar[l]; return; }
+void build(int l, int r, int idx) {
+    if (r-l==1) { seg[idx] = a[l]; return; }
     int m = (l+r)>>1;
-    build(l, m, idx<<1, seg, ar); build(m, r, idx<<1|1, seg, ar);
+    build(l, m, idx<<1); build(m, r, idx<<1|1);
     seg[idx] = merge(seg[idx<<1], seg[idx<<1|1]);
 }
 
-void update(int l, int r, int idx, int pos, int v, VL& seg) {
+void update(int l, int r, int idx, int pos, int v) {
     if (r-l==1) { seg[idx] = v; return; }
     int m = (r+l)>>1;
-    if (pos < m) { update(l, m, idx<<1, pos, v, seg);
-    } else { update(m, r, idx<<1|1, pos, v, seg); }
+    if (pos < m) { update(l, m, idx<<1, pos, v); }
+    else { update(m, r, idx<<1|1, pos, v); }
     seg[idx] = merge(seg[idx<<1], seg[idx<<1|1]);
 }
 
-LL get(int l, int r, int ql, int qr, int idx, VL& seg) {
+LL get(int l, int r, int ql, int qr, int idx) {
     if (ql >= r || qr <= l) return neutral;
     if (ql <= l && qr >= r) return seg[idx];
     int m = (l+r)>>1;
-    return merge(get(l, m, ql, qr, idx<<1, seg), get(m, r, ql, qr, idx<<1|1, seg));
+    return merge(get(l, m, ql, qr, idx<<1), get(m, r, ql, qr, idx<<1|1));
 }
 
 void solve() {
-    if (!SZ(a)) a.PB(1);
-    segA.resize(SZ(a) * 4);
-    segB.resize(SZ(b) * 4);
-    build(0, SZ(a), 1, segA, a);
-    build(0, SZ(b), 1, segB, b);
+    seg.resize(SZ(a) * 4);
+    build(0, SZ(a), 1);
     R(m);
     while (m--) {
         int q, u, v;
         R(q, u, v);
         if (q) {
-            LL sumA = get(0, SZ(a), u / 2 - !(u&1), v / 2, 1, segA);
-            LL sumB = get(0, SZ(b), u / 2, v / 2 + (v&1), 1, segB);
-            if (u&1) {
-                W(sumB - sumA);
-            } else {
-                W(sumA - sumB);
-            }
+            LL sum = get(0, SZ(a), u - 1, v, 1);
+            if (!(u&1)) sum *= -1;
+            W(sum);
         } else {
-            if (u&1) {
-                update(0, SZ(b), 1, u / 2, v, segB);
-            } else {
-                update(0, SZ(a), 1, u/2 - !(u&1), v, segA);
-            }
+            if (!(u&1)) v *= -1;
+            update(0, SZ(a), 1, u - 1, v);
         }
     }
 }
@@ -116,8 +105,8 @@ void input() {
     R(n);
     FOR(i,0,n) {
         int x; R(x);
-        if (i&1) a.PB(x);
-        else b.PB(x);
+        if (i&1) x *= -1;
+        a.PB(x);
     }
 }
 
